@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace IoT_Alerts.Bases
+﻿namespace IoT_Alerts.Bases
 {
-    class Thresholds
+    public static class Thresholds
     {
+        public const double TempWarning = 25.0;
+        public const double TempCritical = 35.0;
+        public const double HumidityWarning = 60.0;
+        public const double HumidityCritical = 75.0;
+
+
     }
 }

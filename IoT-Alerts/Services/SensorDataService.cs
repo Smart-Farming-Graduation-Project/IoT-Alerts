@@ -9,10 +9,10 @@ namespace IoT_Alerts.Services
     public class SensorDataService
     {
         private const int MaxReadings = 10; // Keep last 10 readings
-        private static readonly List<SensorData> RecentReadings = new List<SensorData>();
+        private readonly List<SensorData> RecentReadings = new List<SensorData>();
         public bool IsSensorDataValid(SensorData data, ILogger log)
         {
-            if (data.Temperature < -50 || data.Temperature > 100 || data.Humidity < 0 || data.Humidity > 100)
+            if (data.temperature < -50 || data.temperature > 100 || data.humidity < 0 || data.humidity > 100)
             {
                 log.LogWarning("Invalid sensor data: {data}", data);
                 return false;
@@ -31,22 +31,22 @@ namespace IoT_Alerts.Services
 
         public double CalculateAverageTemperature()
         {
-            return RecentReadings.Count == 0 ? 0 : RecentReadings.Average(r => r.Temperature);
+            return RecentReadings.Count == 0 ? 0 : RecentReadings.Average(r => r.temperature);
         }
         public double CalculateAverageHumidity()
         {
-            return RecentReadings.Count == 0 ? 0 : RecentReadings.Average(r => r.Humidity);
+            return RecentReadings.Count == 0 ? 0 : RecentReadings.Average(r => r.humidity);
         }
 
         public string GetRiskScore(SensorData data)
         {
             double score = 0;
 
-            if (data.Temperature > Thresholds.TempCritical) score += 50;
-            else if (data.Temperature > Thresholds.TempWarning) score += 20;
+            if (data.temperature > Thresholds.TempCritical) score += 50;
+            else if (data.temperature > Thresholds.TempWarning) score += 20;
 
-            if (data.Humidity > Thresholds.HumidityCritical) score += 40;
-            else if (data.Humidity > Thresholds.HumidityWarning) score += 15;
+            if (data.humidity > Thresholds.HumidityCritical) score += 40;
+            else if (data.humidity > Thresholds.HumidityWarning) score += 15;
 
             if (score > 60) return "🔴 High Risk";
             if (score > 30) return "🟡 Medium Risk";

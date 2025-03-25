@@ -14,6 +14,7 @@ namespace IoT_Alerts.Functions
             [SignalRConnectionInfo(HubName = "MyHub")] SignalRConnectionInfo connectionInfo, ILogger log)
         {
             // Log the URL and access token
+
             log.LogInformation($"SignalR URL: {connectionInfo.Url}");
             log.LogInformation($"SignalR Access Token: {connectionInfo.AccessToken}");
             return connectionInfo;

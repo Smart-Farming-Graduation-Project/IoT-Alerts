@@ -19,7 +19,36 @@ namespace IoT_Alerts.Services
             }
             return true;
         }
+        //Future implementation
 
+        //private static async Task<string> GetWeatherAsync()
+        //{
+        //    string apiKey = "YOUR_WEATHER_API_KEY"; // Replace with your actual API key
+        //    string city = "YourCity";
+        //    string url = $"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={apiKey}&units=metric";
+
+        //    var response = await httpClient.GetStringAsync(url);
+        //    return response;
+        //}
+
+        //private static async Task<double> PredictFutureTemperature()
+        //{
+        //    string modelUrl = "YOUR_AZURE_ML_ENDPOINT"; // Replace with your Azure ML endpoint
+        //    var response = await httpClient.GetStringAsync(modelUrl);
+        //    return double.Parse(response);
+        //}
+        //private static async Task SendSmsAlert(string message)
+        //{
+        //    string twilioUrl = "https://api.twilio.com/2010-04-01/Accounts/YOUR_ACCOUNT_SID/Messages.json";
+        //    var content = new FormUrlEncodedContent(new[]
+        //    {
+        //        new KeyValuePair<string, string>("To", "+1234567890"),
+        //        new KeyValuePair<string, string>("From", "YourTwilioNumber"),
+        //        new KeyValuePair<string, string>("Body", message)
+        //    });
+
+        //    HttpResponseMessage response = await httpClient.PostAsync(twilioUrl, content);
+        //}
         public void AddToHistory(SensorData data)
         {
             if (RecentReadings.Count >= MaxReadings)

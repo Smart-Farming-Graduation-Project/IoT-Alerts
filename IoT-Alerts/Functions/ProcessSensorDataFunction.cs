@@ -74,6 +74,8 @@ namespace IoT_Alerts.Functions
             {
                 log.LogError(ex, "Error processing event.");
             }
+
         }
+
     }
 }

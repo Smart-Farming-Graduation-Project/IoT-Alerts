@@ -49,13 +49,14 @@ namespace IoT_Alerts.Functions
 
                 // Analyze sensor data for alerts
                 var alerts = _alertService.AnalyzeSensorData(sensorData, log);
-                string statusMessage = alerts.Count > 0 ? string.Join("; ", alerts) : $"✅ Normal Data: {sensorData.temperature}°C, {sensorData.humidity}%";
+                string statusMessage = alerts.Count > 0 ? string.Join("; ", alerts) : $"✅ Normal Data: {sensorData.Temperature}°C, {sensorData.Humidity}%";
 
                 // Prepare SignalR message
                 var response = new
                 {
-                    CurrentTemperature = sensorData.temperature,
-                    CurrentHumidity = sensorData.humidity,
+                    CurrentTemperature = sensorData.Temperature,
+                    CurrentHumidity = sensorData.Humidity,
+                    CurrentFlame = sensorData.Flame,
                     AverageTemperature = avgTemp,
                     AverageHumidity = avgHumidity,
                     RiskLevel = riskLevel,

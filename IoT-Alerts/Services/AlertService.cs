@@ -11,25 +11,30 @@ namespace IoT_Alerts.Services
         {
             var alerts = new List<string>();
 
-            if (data.temperature > Thresholds.TempCritical)
+            if (data.Temperature > Thresholds.TempCritical)
             {
-                alerts.Add($"🔥 CRITICAL: {data.temperature}°C");
-                log.LogError("🔥 CRITICAL: High Temp {temperature}°C", data.temperature);
+                alerts.Add($"🔥 CRITICAL: {data.Temperature}°C");
+                log.LogError("🔥 CRITICAL: High Temp {temperature}°C", data.Temperature);
             }
-            else if (data.temperature > Thresholds.TempWarning)
+            else if (data.Temperature > Thresholds.TempWarning)
             {
-                alerts.Add($"⚠️ Warning: {data.temperature}°C");
-                log.LogWarning("⚠️ Warning: High Temp {temperature}°C", data.temperature);
+                alerts.Add($"⚠️ Warning: {data.Temperature}°C");
+                log.LogWarning("⚠️ Warning: High Temp {temperature}°C", data.Temperature);
             }
-            if (data.humidity > Thresholds.HumidityCritical)
+            if (data.Humidity > Thresholds.HumidityCritical)
             {
-                alerts.Add($"💧 CRITICAL: {data.humidity}%");
-                log.LogError("💧 CRITICAL: High Humidity {humidity}%", data.humidity);
+                alerts.Add($"💧 CRITICAL: {data.Humidity}%");
+                log.LogError("💧 CRITICAL: High Humidity {humidity}%", data.Humidity);
             }
-            else if (data.humidity > Thresholds.HumidityWarning)
+            else if (data.Humidity > Thresholds.HumidityWarning)
             {
-                alerts.Add($"⚠️ Warning: {data.humidity}%");
-                log.LogWarning("⚠️ Warning: High Humidity {humidity}%", data.humidity);
+                alerts.Add($"⚠️ Warning: {data.Humidity}%");
+                log.LogWarning("⚠️ Warning: High Humidity {humidity}%", data.Humidity);
+            }
+            if (data.Flame > Thresholds.FlameDetected)
+            {
+                alerts.Add("🚨 FLAME DETECTED!");
+                log.LogError("🚨 FLAME DETECTED! Value: {flame}", data.Flame);
             }
 
             return alerts;
